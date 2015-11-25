@@ -118,7 +118,8 @@ class RequestParameters:
                  hash=None,
                  accepts_webp=False,
                  request=None,
-                 max_age=None):
+                 max_age=None,
+                 config=None):
 
         self.debug = bool(debug)
         self.meta = bool(meta)
@@ -172,7 +173,7 @@ class RequestParameters:
         self.focal_points = focal_points
         self.hash = hash
         self.prevent_result_storage = False
-        self.unsafe = unsafe == 'unsafe' or unsafe is True
+        self.unsafe = unsafe == config.UNSAFE_URL_KEYWORD or unsafe is True
         self.format = None
         self.accepts_webp = accepts_webp
         self.max_bytes = None

@@ -10,11 +10,11 @@
 
 import re
 from urllib import quote
-
+from thumbor.config import Config
 
 class Url(object):
-
-    unsafe_or_hash = r'(?:(?:(?P<unsafe>unsafe)|(?P<hash>.+?))/)?'
+    
+    unsafe_or_hash = r'(?:(?:(?P<unsafe>%s)|(?P<hash>.+?))/)?'
     debug = '(?:(?P<debug>debug)/)?'
     meta = '(?:(?P<meta>meta)/)?'
     trim = '(?:(?P<trim>trim(?::(?:top-left|bottom-right))?(?::\d+)?)/)?'
@@ -30,11 +30,15 @@ class Url(object):
     compiled_regex = None
 
     @classmethod
-    def regex(cls, has_unsafe_or_hash=True):
+    def regex(cls, has_unsafe_or_hash=True, context=None):
         reg = ['/?']
 
         if has_unsafe_or_hash:
-            reg.append(cls.unsafe_or_hash)
+            if context:
+                config = context.config
+            else:
+                config = Config.load(None)
+            reg.append(cls.unsafe_or_hash%config.UNSAFE_URL_KEYWORD)
         reg.append(cls.debug)
         reg.append(cls.meta)
         reg.append(cls.trim)
