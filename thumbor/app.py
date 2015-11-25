@@ -53,7 +53,7 @@ class ThumborServiceApp(tornado.web.Application):
 
         # Imaging handler (GET)
         handlers.append(
-            (Url.regex(), ImagingHandler, {'context': self.context})
+            (Url.regex(context=self.context), ImagingHandler, {'context': self.context})
         )
 
         return handlers

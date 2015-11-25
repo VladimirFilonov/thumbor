@@ -40,6 +40,8 @@ class ImagingHandler(ContextHandler):
             return
 
         kw['request'] = self.request
+        kw['image'] = quote(kw['image'].encode('utf-8'))
+        kw['config'] = self.context.config
 
         self.context.request = RequestParameters(**kw)
 

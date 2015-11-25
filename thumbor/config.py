@@ -112,6 +112,7 @@ Config.define(
 Config.define('SECURITY_KEY', 'MY_SECURE_KEY', 'The security key thumbor uses to sign image URLs', 'Security')
 
 Config.define('ALLOW_UNSAFE_URL', True, 'Indicates if the /unsafe URL should be available', 'Security')
+Config.define('UNSAFE_URL_KEYWORD', 'unsafe', 'Keyword for unsafe URL prefix', 'Security')
 Config.define('ALLOW_OLD_URLS', True, 'Indicates if encrypted (old style) URLs should be allowed', 'Security')
 Config.define('ENABLE_ETAGS', True, 'Enables automatically generated etags', 'HTTP')
 Config.define('MAX_ID_LENGTH', 32, 'Set maximum id length for images when stored', 'Storage')
