@@ -242,7 +242,7 @@ class Engine(BaseEngine):
 
     def image_data_as_rgb(self, update_image=True):
         converted_image = self.image
-        if converted_image.mode not in ['RGB', 'RGBA', 'P']:
+        if converted_image.mode not in ['RGB', 'RGBA']:
             if 'A' in converted_image.mode:
                 converted_image = converted_image.convert('RGBA')
             else:
